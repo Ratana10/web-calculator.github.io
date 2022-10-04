@@ -3,6 +3,7 @@
 const result = document.querySelector(".outputResult");
 const output = document.querySelector(".inputResult");
 const keys = document.querySelectorAll("button");
+var count = 0
 keys.forEach(element => {
     element.addEventListener("click", calculate)
 });
@@ -10,23 +11,34 @@ keys.forEach(element => {
 
 function calculate(){
     let buttonText = this.innerText;
-   
+    var str = output.textContent
+        
+    
     if(buttonText == "AC"){
         output.innerText = ""
         result.innerText = 0
+        count = 0
         return 
     }
+    
     if(buttonText == "="){
         result.innerText = eval(output.innerText)
         return 
     }
     if(buttonText == "Del"){
         output.textContent = output.textContent.substr(0,output.textContent.length-1)
-    
+        count--;
         return
     }
-    else{
 
+    if(count > 8){
+        return
+    }
+       
+        
+    else{
+        count ++;
+        console.log(count)
         output.textContent += buttonText;
         return 
     }
